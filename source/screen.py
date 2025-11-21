@@ -1,5 +1,6 @@
 import customtkinter as ctk
 import spam_detector
+from tkinter import messagebox
 
 def analizar_email():
     texto = entrada_email.get()
@@ -10,8 +11,10 @@ def analizar_email():
     resultado = spam_detector.predecir_spam(texto, modelo, vectorizer)
 
     if resultado == "SPAM":
+        messagebox.showinfo("Aviso", "SPAM DETETCTADO")
         etiqueta_resultado.configure(text="SPAM", fg_color="red")
     else:
+        messagebox.showinfo("Aviso", "SPAM NO DETETCTADO")
         etiqueta_resultado.configure(text="NO SPAM", fg_color="green")
 
 def main():
@@ -33,7 +36,7 @@ def main():
     instruccion = ctk.CTkLabel(ventana, text="Escribe un email para analizar")
     instruccion.pack()
 
-    entrada_email = ctk.CTkEntry(ventana, width=400)
+    entrada_email = ctk.CTkEntry(ventana, width=400, placeholder_text="Escribe tu email aqui....")
     entrada_email.pack(pady=10)
 
     boton = ctk.CTkButton(ventana, text="Analizar", command=analizar_email, text_color="white", fg_color="#4CAF50", hover_color="#4D8150")
