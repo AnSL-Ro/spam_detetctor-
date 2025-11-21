@@ -6,16 +6,16 @@ def analizar_email():
     texto = entrada_email.get()
 
     if texto == "":
-        etiqueta_resultado.configure(text="Porfavor escribe un email")
+        messagebox.showinfo("Error", "Escribe un correo email antes de detectar")
         return
     resultado = spam_detector.predecir_spam(texto, modelo, vectorizer)
 
     if resultado == "SPAM":
         messagebox.showinfo("Aviso", "SPAM DETETCTADO")
-        etiqueta_resultado.configure(text="SPAM", fg_color="red")
+        
     else:
         messagebox.showinfo("Aviso", "SPAM NO DETETCTADO")
-        etiqueta_resultado.configure(text="NO SPAM", fg_color="green")
+        
 
 def main():
     global modelo, vectorizer, entrada_email, etiqueta_resultado
